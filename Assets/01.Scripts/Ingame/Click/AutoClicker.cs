@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class AutoClicker : MonoBehaviour
 {
+    private void Start()
+    {
+        // Start()는 모든 Awake() 이후에 실행되므로 안전!
+        _timer = 0f;
+    }
+
     // 역할: 정해진 시간 간격마다 Clickable한 친구를 때린다.
     [SerializeField] private float _interval;       // 시간 간격
     private float _timer;
