@@ -639,7 +639,7 @@ GameObject:
   - component: {fileID: 1355435549}
   m_Layer: 0
   m_Name: Clicker
-  m_TagString: Clickable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -903,7 +903,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7685699000472540441, guid: 1ad2a08cdc3e1c74d9b71e22387f437b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.07
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899416461430229147, guid: 1ad2a08cdc3e1c74d9b71e22387f437b, type: 3}
+      propertyPath: _name
+      value: "\uC2AC\uB77C\uC784"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8130987313874777758, guid: 1ad2a08cdc3e1c74d9b71e22387f437b, type: 3}
+      propertyPath: _flashColor.b
+      value: 0.4952829
+      objectReference: {fileID: 0}
+    - target: {fileID: 8130987313874777758, guid: 1ad2a08cdc3e1c74d9b71e22387f437b, type: 3}
+      propertyPath: _flashColor.g
+      value: 0.495283
+      objectReference: {fileID: 0}
+    - target: {fileID: 8130987313874777758, guid: 1ad2a08cdc3e1c74d9b71e22387f437b, type: 3}
+      propertyPath: _flashColor.r
+      value: 0.007008709
       objectReference: {fileID: 0}
     - target: {fileID: 8580115550764496691, guid: 1ad2a08cdc3e1c74d9b71e22387f437b, type: 3}
       propertyPath: m_Size.x
@@ -917,6 +933,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 9d69ae98725365b4b94189120dc1b40a, type: 3}
+    - target: {fileID: 8580115550764496691, guid: 1ad2a08cdc3e1c74d9b71e22387f437b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580115550764496691, guid: 1ad2a08cdc3e1c74d9b71e22387f437b, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580115550764496691, guid: 1ad2a08cdc3e1c74d9b71e22387f437b, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8580115550764496691, guid: 1ad2a08cdc3e1c74d9b71e22387f437b, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
