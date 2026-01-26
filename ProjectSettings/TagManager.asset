@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Clickable
   layers:
   - Default
   - TransparentFX
@@ -11,8 +12,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Clickable
-  - 
+  - ClickTarget
+  - Background
   - 
   - 
   - 
@@ -38,8 +39,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3133966931
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ClickTarget
+    uniqueID: 421768773
     locked: 0
   m_RenderingLayers:
   - Default
