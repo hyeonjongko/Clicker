@@ -1,0 +1,11 @@
+using UnityEngine;
+
+public class DamageFloaterFeedback : MonoBehaviour, IFeedback
+{
+    public void Play(ClickInfo clickInfo)
+    {
+        // 필수 과제 :  대미지 플로팅 구현
+        
+        
+    }
+}
