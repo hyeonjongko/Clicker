@@ -94,6 +94,6 @@ public readonly struct Currency
     // 이걸 개조(메서드 오버라이)해서 특정 포맷으로 문자 변환되게끔 강제한다.
     public override string ToString()
     {
-        return Value.ToFormattedString();
+        return Value.ToString("N0");
     }
 }
