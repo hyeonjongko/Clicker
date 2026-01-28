@@ -7,7 +7,7 @@ public class ClickTarget : MonoBehaviour, Clickable
 
    public bool OnClick(ClickInfo clickInfo)
    {
-      Debug.Log($"{_name}: 다음부터는 늦지 않겠습니다.");
+      //Debug.Log($"{_name}: 다음부터는 늦지 않겠습니다.");
       
       // 클릭에대한 여러 가지 피드백을 보여줘야 합니다.
       
