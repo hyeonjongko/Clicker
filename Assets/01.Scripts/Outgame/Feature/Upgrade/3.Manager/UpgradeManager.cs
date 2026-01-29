@@ -38,6 +38,11 @@ public class UpgradeManager : MonoBehaviour
             return false;
         }
 
+        if(!upgrade.IsMaxLevel)
+        {
+            return false;
+        }
+
         return CurrencyManager.Instance.TrySpend(ECurrencyType.Gold, upgrade.Cost);
     }
     public bool TryLevelUp(EUpgradeType type)
