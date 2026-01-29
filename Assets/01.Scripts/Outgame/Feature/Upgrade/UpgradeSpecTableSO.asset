@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UpgradeSpecTableSO
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSpecTableSO
   Datas:
-  - Type: {fileID: 0}
+  - Type: 0
     MaxLevel: 100
     BaseCost: 10
     BaseDamage: 1
@@ -21,35 +21,3 @@ MonoBehaviour:
     DamageMultiplier: 1
     Name: "\uB9D0\uB791 \uD074\uB9AD"
     Description: "\uD074\uB9AD 1\uD68C\uB2F9 \uC824\uB9AC \uD68D\uB4DD\uB7C9 + {0}"
-  - Type: {fileID: 0}
-    MaxLevel: 0
-    BaseCost: 0
-    BaseDamage: 0
-    CostMultiplier: 0
-    DamageMultiplier: 0
-    Name: 
-    Description: 
-  - Type: {fileID: 0}
-    MaxLevel: 0
-    BaseCost: 0
-    BaseDamage: 0
-    CostMultiplier: 0
-    DamageMultiplier: 0
-    Name: 
-    Description: 
-  - Type: {fileID: 0}
-    MaxLevel: 0
-    BaseCost: 0
-    BaseDamage: 0
-    CostMultiplier: 0
-    DamageMultiplier: 0
-    Name: 
-    Description: 
-  - Type: {fileID: 0}
-    MaxLevel: 0
-    BaseCost: 0
-    BaseDamage: 0
-    CostMultiplier: 0
-    DamageMultiplier: 0
-    Name: 
-    Description: 
