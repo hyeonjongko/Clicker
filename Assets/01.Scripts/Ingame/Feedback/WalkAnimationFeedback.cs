@@ -5,10 +5,9 @@ public class WalkAnimationFeedback : MonoBehaviour, IFeedback
 {
     private static readonly int AnimatorWalk = Animator.StringToHash("Walk");
 
-    [SerializeField] private float _walkDuration = 0.5f;
-
     private Animator _animator;
     private Coroutine _walkCoroutine;
+    private bool _isPlaying;
 
     private void Awake()
     {
@@ -24,10 +23,10 @@ public class WalkAnimationFeedback : MonoBehaviour, IFeedback
             return;
         }
 
-        // 이미 실행 중인 코루틴이 있으면 중지
-        if (_walkCoroutine != null)
+        // 이미 애니메이션이 재생 중이면 무시 (끊기지 않도록)
+        if (_isPlaying)
         {
-            StopCoroutine(_walkCoroutine);
+            return;
         }
 
         _walkCoroutine = StartCoroutine(PlayWalkAnimation());
@@ -35,9 +34,21 @@ public class WalkAnimationFeedback : MonoBehaviour, IFeedback
 
     private IEnumerator PlayWalkAnimation()
     {
+        _isPlaying = true;
         _animator.SetBool(AnimatorWalk, true);
-        yield return new WaitForSeconds(_walkDuration);
+
+        // 다음 프레임까지 대기 (애니메이션 상태가 전환될 때까지)
+        yield return null;
+        yield return null;
+
+        // Walk 애니메이션이 끝날 때까지 대기
+        AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+        float animationLength = stateInfo.length;
+
+        yield return new WaitForSeconds(animationLength);
+
         _animator.SetBool(AnimatorWalk, false);
+        _isPlaying = false;
         _walkCoroutine = null;
     }
 }

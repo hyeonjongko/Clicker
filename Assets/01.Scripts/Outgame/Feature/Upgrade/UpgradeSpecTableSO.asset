@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23eaf533a78c184e9140cc62c78f805, type: 3}
+  m_Name: UpgradeSpecTableSO
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeSpecTableSO
+  Datas:
+  - Type: {fileID: 0}
+    MaxLevel: 100
+    BaseCost: 10
+    BaseDamage: 1
+    CostMultiplier: 1.07
+    DamageMultiplier: 1
+    Name: "\uB9D0\uB791 \uD074\uB9AD"
+    Description: "\uD074\uB9AD 1\uD68C\uB2F9 \uC824\uB9AC \uD68D\uB4DD\uB7C9 + {0}"
+  - Type: {fileID: 0}
+    MaxLevel: 0
+    BaseCost: 0
+    BaseDamage: 0
+    CostMultiplier: 0
+    DamageMultiplier: 0
+    Name: 
+    Description: 
+  - Type: {fileID: 0}
+    MaxLevel: 0
+    BaseCost: 0
+    BaseDamage: 0
+    CostMultiplier: 0
+    DamageMultiplier: 0
+    Name: 
+    Description: 
+  - Type: {fileID: 0}
+    MaxLevel: 0
+    BaseCost: 0
+    BaseDamage: 0
+    CostMultiplier: 0
+    DamageMultiplier: 0
+    Name: 
+    Description: 
+  - Type: {fileID: 0}
+    MaxLevel: 0
+    BaseCost: 0
+    BaseDamage: 0
+    CostMultiplier: 0
+    DamageMultiplier: 0
+    Name: 
+    Description: 

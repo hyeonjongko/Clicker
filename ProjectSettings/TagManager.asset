@@ -42,11 +42,11 @@ TagManager:
   - name: Background
     uniqueID: 3133966931
     locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: ClickTarget
     uniqueID: 421768773
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   m_RenderingLayers:
   - Default

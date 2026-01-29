@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Clicker : MonoBehaviour
 {
@@ -7,6 +8,12 @@ public class Clicker : MonoBehaviour
         // 1. 마우스 클릭을 감지한다.
         if (Input.GetMouseButtonDown(0))
         {
+            // UI 위에 마우스가 있으면 클릭 무시
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
             // 2. 마우스 좌표를 구한다.
             // 마우스 좌표계는 스크린 좌표계
             Vector2 mousePos = Input.mousePosition;
