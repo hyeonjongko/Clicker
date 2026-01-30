@@ -37,7 +37,7 @@ public class Clicker : MonoBehaviour
             ClickInfo clickInfo = new ClickInfo
             {
                 Type = EClickType.Manual,
-                Damage = GameManager.Instance.ManualDamage,
+                //Damage = GameManager.Instance.ManualDamage,
                 Position = hit.point,
             };
             

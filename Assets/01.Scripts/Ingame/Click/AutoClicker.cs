@@ -32,7 +32,7 @@ public class AutoClicker : MonoBehaviour
                 ClickInfo clickInfo = new ClickInfo
                 {
                     Type = EClickType.Auto,
-                    Damage = GameManager.Instance.AutoDamage
+                    //Damage = GameManager.Instance.AutoDamage
                 };
                 
                 clickableScript.OnClick(clickInfo);

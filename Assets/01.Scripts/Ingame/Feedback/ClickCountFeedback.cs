@@ -1,29 +1,29 @@
-using TMPro;
-using UnityEngine;
+//using TMPro;
+//using UnityEngine;
 
-public class ClickCountFeedback : MonoBehaviour, IFeedback
-{
-    [SerializeField] private TextMeshProUGUI _textMesh;
+//public class ClickCountFeedback : MonoBehaviour, IFeedback
+//{
+//    [SerializeField] private TextMeshProUGUI _textMesh;
 
-    private void Awake()
-    {
-        if (_textMesh == null)
-        {
-            _textMesh = GetComponentInChildren<TextMeshProUGUI>();
-        }
-    }
+//    private void Awake()
+//    {
+//        if (_textMesh == null)
+//        {
+//            _textMesh = GetComponentInChildren<TextMeshProUGUI>();
+//        }
+//    }
 
-    public void Play(ClickInfo clickInfo)
-    {
-        GameManager.Instance.ClickCount++;
-        UpdateText();
-    }
+//    public void Play(ClickInfo clickInfo)
+//    {
+//        GameManager.Instance.ClickCount++;
+//        UpdateText();
+//    }
 
-    private void UpdateText()
-    {
-        if (_textMesh != null)
-        {
-            _textMesh.text = GameManager.Instance.ClickCount.ToString();
-        }
-    }
-}
+//    private void UpdateText()
+//    {
+//        if (_textMesh != null)
+//        {
+//            _textMesh.text = GameManager.Instance.ClickCount.ToString();
+//        }
+//    }
+//}
