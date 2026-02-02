@@ -9,67 +9,97 @@ public class UpgradeManager : MonoBehaviour
     public static event Action OnDataChanged;
 
     [SerializeField] private UpgradeSpecTableSO _specTable;
+    private IUpgradeRepository _repository;
 
     private Dictionary<EUpgradeType, Upgrade> _upgrade = new();
     private void Awake()
     {
         Instance = this;
 
-        foreach(var specData in _specTable.Datas)
+        _repository = new JsonUpgradeRepository(AccountManager.Instance.Email);
+
+        var saveData = _repository.Load();
+
+        // 스펙 데이터에 따라 도메인 생성
+        foreach (var specData in _specTable.Datas)
         {
-            if(_upgrade.ContainsKey(specData.Type))
+            if (_upgrade.ContainsKey(specData.Type))
             {
                 throw new Exception($"There is already an upgrade with type {specData.Type}");
             }
 
-            _upgrade.Add(specData.Type, new Upgrade(specData));
+            int savedLevel = 0;
+            int index = (int)specData.Type;
+            if (saveData.Levels != null && index < saveData.Levels.Length)
+            {
+                Debug.Log(saveData.Levels[index]);
+                savedLevel = saveData.Levels[index];
+            }
+            else
+            {
+                Debug.Log("없");
+            }
+
+            Debug.Log(specData.Name);
+            _upgrade.Add(specData.Type, new Upgrade(specData, savedLevel));
         }
 
         OnDataChanged?.Invoke();
     }
 
-    public Upgrade Get(EUpgradeType type) => _upgrade[type];
+    public Upgrade Get(EUpgradeType type) => _upgrade[type] ?? null;
     public List<Upgrade> GetAll() => _upgrade.Values.ToList();
 
     public bool CanLevelUp(EUpgradeType type)
     {
-        if(!_upgrade.TryGetValue(type, out Upgrade upgrade))
+        if (!_upgrade.TryGetValue(type, out Upgrade upgrade))
         {
             return false;
         }
 
-        if(!upgrade.IsMaxLevel)
+        if (!upgrade.CanLevelUp())
         {
             return false;
         }
 
-        return CurrencyManager.Instance.TrySpend(ECurrencyType.Gold, upgrade.Cost);
+        return CurrencyManager.Instance.CanAfford(ECurrencyType.Gold, upgrade.Cost);
     }
     public bool TryLevelUp(EUpgradeType type)
     {
         if (!_upgrade.TryGetValue(type, out Upgrade upgrade))
         {
-            Debug.Log(1);
-
             return false;
         }
 
         if (!CurrencyManager.Instance.TrySpend(ECurrencyType.Gold, upgrade.Cost))
         {
-            Debug.Log(2);
-
             return false;
         }
 
-        if (!upgrade.LevelUp())
+        if (!upgrade.TryLevelUp())
         {
-            Debug.Log(3);
             return false;
         }
+
+        Save();
 
         OnDataChanged?.Invoke();
 
         return true;
+    }
+    private void Save()
+    {
+        var data = new UpgradeSaveData
+        {
+            Levels = new int[(int)EUpgradeType.Count]
+        };
+
+        foreach (var pair in _upgrade)
+        {
+            data.Levels[(int)pair.Key] = pair.Value.Level;
+        }
+
+        _repository.Save(data);
     }
 
 }

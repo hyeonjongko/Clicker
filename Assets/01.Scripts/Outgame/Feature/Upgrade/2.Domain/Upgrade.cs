@@ -23,8 +23,9 @@ public class Upgrade
     public bool IsMaxLevel => Level >= SpecData.MaxLevel;
 
     // 2. 핵심 규칙(유효성)을 작성한다.
-    public Upgrade(UpgradeSpecData specData)
+    public Upgrade(UpgradeSpecData specData, int level)
     {
+        Level = level;
         SpecData = specData;
 
         if (specData.MaxLevel < 0) throw new System.ArgumentException($"최대 레벨은 0보다 커야합니다 : {specData.MaxLevel}");
@@ -36,11 +37,18 @@ public class Upgrade
         if (string.IsNullOrEmpty(specData.Description)) throw new System.ArgumentException("설명은 비어있을 수 없습니다.");
     }
 
-    public bool LevelUp()
+    public bool CanLevelUp()
     {
-        if(IsMaxLevel) return false;
+        return !IsMaxLevel;
+    }
+
+    public bool TryLevelUp()
+    {
+        if (!CanLevelUp()) return false;
 
         Level++;
+
+        Debug.Log(Cost);
 
         return true;
     }
