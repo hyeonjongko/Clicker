@@ -614,9 +614,9 @@ RectTransform:
   m_Father: {fileID: 1359966977}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &428246695
 MonoBehaviour:
@@ -765,7 +765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &458605562
 RectTransform:
   m_ObjectHideFlags: 0
@@ -927,19 +927,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &509670093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 509670082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 418e612ee8f31724b995f74a8b3af515, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ClickCountFeedback
-  _textMesh: {fileID: 1505132090}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1830,7 +1817,7 @@ RectTransform:
   m_Father: {fileID: 1279793047}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2760,10 +2747,10 @@ RectTransform:
   - {fileID: 1690502849}
   m_Father: {fileID: 1740330563}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 521.65, y: -150}
-  m_SizeDelta: {x: 1080, y: 300}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1551318473
 MonoBehaviour:
@@ -3184,7 +3171,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.00012207031}
-  m_SizeDelta: {x: -20.350098, y: 300}
+  m_SizeDelta: {x: -20.350098, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1740330564
 MonoBehaviour:
@@ -3496,10 +3483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2700bf77a5b66148bf0d23f0295e2e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  ManualDamage: 10
-  AutoDamage: 3
-  Gold: 0
-  ClickCount: 0
 --- !u!1001 &1689188423449425308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3559,9 +3542,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6652898311174458766, guid: 1ad2a08cdc3e1c74d9b71e22387f437b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 509670092}
-    - targetCorrespondingSourceObject: {fileID: 6652898311174458766, guid: 1ad2a08cdc3e1c74d9b71e22387f437b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 509670093}
   m_SourcePrefab: {fileID: 100100000, guid: 1ad2a08cdc3e1c74d9b71e22387f437b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
