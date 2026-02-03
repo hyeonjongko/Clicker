@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "244195866087",
+    "project_id": "slime-clicker-ef6d0",
+    "storage_bucket": "slime-clicker-ef6d0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244195866087:android:e173cf1c5f4d379e6db942",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.Clicker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ755zL2bqoWbpootgb60sSpLT7WLONAM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
