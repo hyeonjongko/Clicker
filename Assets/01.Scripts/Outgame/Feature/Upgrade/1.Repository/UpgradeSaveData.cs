@@ -1,12 +1,15 @@
+using Firebase.Firestore;
 using System;
 
 [Serializable]
+[FirestoreData]
 public struct UpgradeSaveData
 {
+    [FirestoreProperty]
     // 레벨 배열 (EUpgradeType 순서대로 저장)
-    public int[] Levels;
+    public int[] Levels { get; set; }
 
-    public string LastSaveTime;
+    public string LastSaveTime { get; set; }
 
     /// <summary>기본값 (새 게임)</summary>
     public static UpgradeSaveData Default => new UpgradeSaveData

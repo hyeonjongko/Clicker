@@ -82,7 +82,7 @@ public class LoginScene : MonoBehaviour
         var result = await AccountManager.Instance.TryLogin(email, password);
         if (result.Success)
         {
-            SceneManager.LoadScene("MainScene");
+            SceneManager.LoadScene("InGame");
         }
         else
         {

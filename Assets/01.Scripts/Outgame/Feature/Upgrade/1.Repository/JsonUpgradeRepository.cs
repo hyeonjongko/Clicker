@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.IO;
 using UnityEngine;
 
@@ -14,14 +15,14 @@ public class JsonUpgradeRepository : IUpgradeRepository
         filePath = Path.Combine(Application.persistentDataPath, $"{userId}_upgrade_save.json");
     }
 
-    public void Save(UpgradeSaveData data)
+    public async UniTaskVoid Save(UpgradeSaveData data)
     {
         data.LastSaveTime = System.DateTime.Now.ToString("o");
         string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(filePath, json);
+        await File.WriteAllTextAsync(filePath, json);
     }
 
-    public UpgradeSaveData Load()
+    public async UniTask<UpgradeSaveData> Load()
     {
         if (!File.Exists(filePath))
         {
@@ -29,7 +30,7 @@ public class JsonUpgradeRepository : IUpgradeRepository
             return UpgradeSaveData.Default;
         }
 
-        string json = File.ReadAllText(filePath);
+        string json = await File.ReadAllTextAsync(filePath);
         return JsonUtility.FromJson<UpgradeSaveData>(json);
     }
 }

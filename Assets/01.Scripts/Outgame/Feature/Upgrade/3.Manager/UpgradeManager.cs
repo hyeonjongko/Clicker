@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,15 @@ public class UpgradeManager : MonoBehaviour
     {
         Instance = this;
 
-        _repository = new JsonUpgradeRepository(AccountManager.Instance.Email);
+        //_repository = new JsonUpgradeRepository(AccountManager.Instance.Email);
+        _repository = new FirebaseUpgradeRepository();
+        InitializeAsync().Forget();
+    }
 
-        var saveData = _repository.Load();
+    private async UniTaskVoid InitializeAsync()
+    {
+        var saveData = await _repository.Load(); // await 추가!
 
-        // 스펙 데이터에 따라 도메인 생성
         foreach (var specData in _specTable.Datas)
         {
             if (_upgrade.ContainsKey(specData.Type))
