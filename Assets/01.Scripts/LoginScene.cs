@@ -53,6 +53,10 @@ public class LoginScene : MonoBehaviour
         _registerButton.gameObject.SetActive(_mode == SceneMode.Register);
     }
 
+    private static readonly Regex EmailRegex = new Regex(
+    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+    RegexOptions.Compiled | RegexOptions.IgnoreCase
+);
 
     public void OnEmailTextChanged(string email)
     {
@@ -69,24 +73,25 @@ public class LoginScene : MonoBehaviour
     }
 
 
-    private void Login()
+    private async void Login()
     {
         // 로그인
         string email = _idInputField.text;
         string password = _passwordInputField.text;
 
-        var result = AccountManager.Instance.TryLogin(email, password);
+        var result = await AccountManager.Instance.TryLogin(email, password);
         if (result.Success)
         {
-            GotoLogin();
+            SceneManager.LoadScene("MainScene");
         }
         else
         {
             _messageTextUI.text = result.ErrorMessage;
+            Debug.Log(result.ErrorMessage);
         }
     }
 
-    private void Register()
+    private async void Register()
     {
         string email = _idInputField.text;
         string password = _passwordInputField.text;
@@ -98,7 +103,7 @@ public class LoginScene : MonoBehaviour
             return;
         }
 
-        var result = AccountManager.Instance.TryRegister(email, password);
+        var result = await AccountManager.Instance.TryRegister(email, password);
         if (result.Success)
         {
             GotoLogin();

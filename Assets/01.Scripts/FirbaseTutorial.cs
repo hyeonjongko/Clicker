@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Firebase;
 using Firebase.Auth;
@@ -18,30 +20,66 @@ public class FirebaseTutorial : MonoBehaviour
 
     private async void Start()
     {
-        await InitFirebase(); //비동기 작업(데이터 읽기, 쓰기 등)의 결과가 나올 때까지 코드 실행을 잠시 멈추고 기다리게 하는 문법
+        Debug.Log("현재 CPU 번호:" + Thread.CurrentThread.ManagedThreadId);
+
+        await InitFirebase();
         _progressText.text = "파이어베이스 초기화 완료";
         Debug.Log("파이어베이스 초기화 완료");
+
+        Debug.Log("현재 CPU 번호:" + Thread.CurrentThread.ManagedThreadId);
 
         Logout();
         _progressText.text = "로그아웃 완료";
         Debug.Log("로그아웃 완료");
 
+        Debug.Log("현재 CPU 번호:" + Thread.CurrentThread.ManagedThreadId);
+
         await Login("hongil@skku.re.kr", "12345678");
         _progressText.text = "로그인 완료";
         Debug.Log("로그인 완료");
 
+
+
+        await UniTask.Delay(1000);
+        // await 이후 실행 코드를 유니티 CPU에서 실행함을 보장하고,
+
+        // Task 내부작업은 다른  CPU에서 실행할 수 있다.
+        // -> 그러므로 Task 내부작업에서는 MonoBehaviour 수정작업을 하지 않는다.
+        /*await UniTask.Run(() =>
+        {
+            int sum = 0;
+            for (int i = 0; i < 10; ++i)
+            {
+                // 이 작업은 유니티가 실행중 CPU 1에게 작업을 시킬수도 있고 아니면 CPU 2에게 작업을 시킬수도 있다.
+                // 작업이 완료되고 나서
+                // 유니티가 실행중인 CPU1에서 작업을 이어나가는게 아니라 CPU2에서 Monobehaviour 작업을 이어나가려하면 유니티를 모르기때문에 뻗어버린다.
+                // 이것을 유니티는 쓰레드 세이프하지 않다고 한다.. 그래서 Task 사용 지양한다.
+                sum = (sum + i) % 20000;
+                Debug.Log("현재 CPU 번호:" + Thread.CurrentThread.ManagedThreadId);
+                _progressText.text = sum.ToString(); // <- Monobehaviour 작업 X
+            }
+        });*/
+
+
+        Debug.Log("현재 CPU 번호:" + Thread.CurrentThread.ManagedThreadId);
+
         await SaveDog();
         _progressText.text = "강아지 추가 완료";
         Debug.Log("강아지 추가 완료");
+
+        Debug.Log("현재 CPU 번호:" + Thread.CurrentThread.ManagedThreadId);
+
+
+
+
     }
 
-    private async Task InitFirebase()
+    private async UniTask InitFirebase()
     {
-        DependencyStatus status = await FirebaseApp.CheckAndFixDependenciesAsync();
-        //이 작업은 유니티가 실행중 CPU1에게 작업을 시킬 수도 있고 아니면 CPU 2에게 작업을 시킬 수도 있다.
-        //작업이 완료되고 나서
-        //유니티가 실행중인 CPU1에서 작업을 이어나가는게 아니라 CPU2에서 Monobehaviour 작업을 이어나가려하면 유니티는 모르기 때문에 뻗어버린다.
-        //이것을 유니티는 쓰레드 세이프를 하지 않다고 한다. 그래서 Task 사용을 지양한다.
+        DependencyStatus status = await FirebaseApp.CheckAndFixDependenciesAsync().AsUniTask();
+        // 이 작업은 유니티가 실행중 CPU 1에게 작업을 시킬수도 있고 아니면 CPU 2에게 작업을 시킬수도 있다.
+        // 작업이 완료되고 나서
+        // 유니티가 실행중인 CPU1에서 작업을 이어나가는게 아니라 CPU2에서 Monobehaviour 작업을 이어나가려하면 유니티를 모르기때문에 뻗어버린다.
         try
         {
             if (status == DependencyStatus.Available)
@@ -54,11 +92,11 @@ public class FirebaseTutorial : MonoBehaviour
                 Debug.Log("Firebase 초기화 성공!");
             }
         }
-        catch (FirebaseException e) //파이어베이스 실패
+        catch (FirebaseException e)
         {
             Debug.LogError("Firebase 초기화 실패: " + e.Message);
         }
-        catch (Exception e) //인터넷 문제 등으로 실패
+        catch (Exception e)
         {
             Debug.LogError("실패: " + e.Message);
         }
@@ -80,11 +118,11 @@ public class FirebaseTutorial : MonoBehaviour
         });
     }
 
-    private async Task Login(string email, string password)
+    private async UniTask Login(string email, string password)
     {
         try
         {
-            Firebase.Auth.AuthResult result = await _auth.SignInWithEmailAndPasswordAsync(email, password);
+            Firebase.Auth.AuthResult result = await _auth.SignInWithEmailAndPasswordAsync(email, password).AsUniTask();
             Debug.LogFormat("로그인 성공!: {0} ({1})", result.User.Email, result.User.UserId);
         }
         catch (FirebaseException e)
@@ -117,13 +155,13 @@ public class FirebaseTutorial : MonoBehaviour
         }
     }
 
-    private async Task SaveDog()
+    private async UniTask SaveDog()
     {
         Dog dog = new Dog("소똥이", 4);
 
         try
         {
-            DocumentReference reference = await _db.Collection("Dogs").AddAsync(dog);
+            DocumentReference reference = await _db.Collection("Dogs").AddAsync(dog).AsUniTask();
             Debug.Log("저장 성공! 문서 ID: " + reference.Id);
         }
         catch (FirebaseException e)

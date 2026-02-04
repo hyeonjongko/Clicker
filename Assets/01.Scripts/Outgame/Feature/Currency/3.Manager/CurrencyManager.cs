@@ -27,7 +27,8 @@ public class CurrencyManager : MonoBehaviour
    {
       Instance = this;
 
-      _repository = new LocalCurrencyRepository();
+        //_repository = new LocalCurrencyRepository();
+        _repository = new FirebaseCurrencyRepository();
       
       
       Currency currency1 = new Currency(10000);
@@ -37,9 +38,10 @@ public class CurrencyManager : MonoBehaviour
       Debug.Log(currency3);  // 40k
    }
 
-   private void Start()
+   private async void Start()
    {
-      double[] currencyValues = _repository.Load().Currencies;
+        CurrencySaveData saveData = await _repository.Load();
+      double[] currencyValues = saveData.Currencies;
       for (int i = 0; i < _currencies.Length; i++)
       {
          _currencies[i] = currencyValues[i];
@@ -102,7 +104,7 @@ public class CurrencyManager : MonoBehaviour
       {
          saveData.Currencies[i] = (double)_currencies[i];
       }
-      _repository.Save(saveData);
+      _repository.Save(saveData).Forget();
    }
 
   
