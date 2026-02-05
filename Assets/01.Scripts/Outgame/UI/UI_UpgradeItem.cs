@@ -21,7 +21,7 @@ public class UI_UpgradeItem : MonoBehaviour
 
         NameTextUI.text = upgrade.SpecData.Name;
         DescriptionTextUI.text = string.Format(upgrade.SpecData.Description, upgrade.Damage);
-        LevelTextUI.text = upgrade.Level.ToString("N1");
+        LevelTextUI.text = $"Lv.{upgrade.Level.ToString()}";
         CostTextUI.text = upgrade.Cost.ToString();
 
         bool canLevelUp = UpgradeManager.Instance.CanLevelUp(upgrade.SpecData.Type);

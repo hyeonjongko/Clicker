@@ -8,8 +8,6 @@ public class UI_UpgradePanel : MonoBehaviour
 
     private void Start()
     {
-        Refresh();
-
         CurrencyManager.OnDataChanged += Refresh;
         UpgradeManager.OnDataChanged += Refresh;
     }
@@ -19,7 +17,11 @@ public class UI_UpgradePanel : MonoBehaviour
     {
         var upgrades = UpgradeManager.Instance.GetAll();
 
-        for (int i = 0; i < Items.Count; ++i)
+        if (upgrades == null || upgrades.Count == 0)
+            return;
+
+        int count = Mathf.Min(Items.Count, upgrades.Count);
+        for (int i = 0; i < count; ++i)
         {
             Items[i].Refresh(upgrades[i]);
         }

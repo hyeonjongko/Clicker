@@ -36,15 +36,16 @@ public class FirebaseUpgradeRepository : IUpgradeRepository
             if (snapshot.Exists)
             {
                 return snapshot.ConvertTo<UpgradeSaveData>();
+                Debug.Log("업그레이드 로드 완료 (Firebase)");
             }
             return UpgradeSaveData.Default;
         }
         catch (Exception e)
         {
             Debug.LogError("Upgrade 로드 실패: " + e.Message);
+            return UpgradeSaveData.Default;
         }
 
-        return UpgradeSaveData.Default;
     }
 }
 

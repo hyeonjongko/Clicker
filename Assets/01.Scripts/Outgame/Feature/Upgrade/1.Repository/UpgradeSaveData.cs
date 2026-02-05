@@ -3,7 +3,7 @@ using System;
 
 [Serializable]
 [FirestoreData]
-public struct UpgradeSaveData
+public class UpgradeSaveData
 {
     [FirestoreProperty]
     // 레벨 배열 (EUpgradeType 순서대로 저장)

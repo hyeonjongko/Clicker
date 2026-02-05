@@ -24,7 +24,7 @@ public class UpgradeManager : MonoBehaviour
 
     private async UniTaskVoid InitializeAsync()
     {
-        var saveData = await _repository.Load(); // await Ãß°¡!
+        var saveData = await _repository.Load();
 
         foreach (var specData in _specTable.Datas)
         {
@@ -42,7 +42,7 @@ public class UpgradeManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("¾ø");
+                Debug.Log("ì—†");
             }
 
             Debug.Log(specData.Name);
