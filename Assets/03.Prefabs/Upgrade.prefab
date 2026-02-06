@@ -288,7 +288,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lv.0
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fb87cd44e4dd58a4d8e5de4302c2bf3f, type: 2}
   m_sharedMaterial: {fileID: -1681416202873679368, guid: fb87cd44e4dd58a4d8e5de4302c2bf3f, type: 2}
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Red Potion
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fb87cd44e4dd58a4d8e5de4302c2bf3f, type: 2}
   m_sharedMaterial: {fileID: -1681416202873679368, guid: fb87cd44e4dd58a4d8e5de4302c2bf3f, type: 2}
@@ -562,7 +562,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD074\uB9AD 1\uD68C\uB2F9 \uC824\uB9AC \uD68D\uB4DD\uB7C9 + 1"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fb87cd44e4dd58a4d8e5de4302c2bf3f, type: 2}
   m_sharedMaterial: {fileID: -1681416202873679368, guid: fb87cd44e4dd58a4d8e5de4302c2bf3f, type: 2}
@@ -699,7 +699,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 11
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fb87cd44e4dd58a4d8e5de4302c2bf3f, type: 2}
   m_sharedMaterial: {fileID: -1681416202873679368, guid: fb87cd44e4dd58a4d8e5de4302c2bf3f, type: 2}
