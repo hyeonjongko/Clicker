@@ -34,14 +34,27 @@ public class Clicker : MonoBehaviour
             // 누가 클릭했는지             (ManualClick, AutoClick)
             // 어느정도의 강도로 클릭했는지 (int)
 
+            double damage = GetManualClickDamage();
+
             ClickInfo clickInfo = new ClickInfo
             {
                 Type = EClickType.Manual,
-                //Damage = GameManager.Instance.ManualDamage,
+                Damage = damage,
                 Position = hit.point,
             };
             
             clickable?.OnClick(clickInfo);
         }
+    }
+
+    private double GetManualClickDamage()
+    {
+        double flat = UpgradeManager.Instance
+            .Get(EUpgradeType.ManualClickDamagePlusAdd).Damage;
+        double percent = UpgradeManager.Instance
+            .Get(EUpgradeType.ManualClickDamagePercentAdd).Damage;
+
+        double baseDamage = 1; // 기본 클릭 대미지
+        return (baseDamage + flat) * (1 + percent / 100.0);
     }
 }

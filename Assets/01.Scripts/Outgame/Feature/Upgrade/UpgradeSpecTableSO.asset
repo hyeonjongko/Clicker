@@ -21,7 +21,7 @@ MonoBehaviour:
     DamageMultiplier: 1
     Name: Red Potion
     Description: "\uD074\uB9AD 1\uD68C\uB2F9 \uC824\uB9AC \uD68D\uB4DD\uB7C9 + {0}"
-  - Type: 2
+  - Type: 1
     MaxLevel: 100
     BaseCost: 20
     BaseDamage: 1
@@ -29,7 +29,7 @@ MonoBehaviour:
     DamageMultiplier: 1
     Name: Blue Potion
     Description: "\uD074\uB9AD 1\uD68C\uB2F9 \uC824\uB9AC \uD68D\uB4DD\uB7C9 + {0}"
-  - Type: 1
+  - Type: 2
     MaxLevel: 100
     BaseCost: 30
     BaseDamage: 1
@@ -51,5 +51,5 @@ MonoBehaviour:
     BaseDamage: 1
     CostMultiplier: 1.07
     DamageMultiplier: 1
-    Name: Blue Potion
+    Name: Mint Potion
     Description: "\uD074\uB9AD 1\uD68C\uB2F9 \uC824\uB9AC \uD68D\uB4DD\uB7C9 + {0}"

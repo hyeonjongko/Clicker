@@ -104,7 +104,7 @@ public class UpgradeManager : MonoBehaviour
             data.Levels[(int)pair.Key] = pair.Value.Level;
         }
 
-        _repository.Save(data);
+        _repository.Save(data).Forget();
     }
 
 }

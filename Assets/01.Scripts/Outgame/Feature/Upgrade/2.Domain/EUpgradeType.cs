@@ -3,8 +3,8 @@ using UnityEngine;
 public enum EUpgradeType
 {
     ManualClickDamagePlusAdd,
-    AutoClickDamagePlusAdd,
     ManualClickDamagePercentAdd,
+    AutoClickDamagePlusAdd,
     AutoClickDamagePercentAdd,
     AutoClick2DamagePercentAdd,
     

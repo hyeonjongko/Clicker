@@ -5,10 +5,10 @@ using System;
 [FirestoreData]
 public class UpgradeSaveData
 {
-    [FirestoreProperty]
     // 레벨 배열 (EUpgradeType 순서대로 저장)
+    [FirestoreProperty]
     public int[] Levels { get; set; }
-
+    [FirestoreProperty]
     public string LastSaveTime { get; set; }
 
     /// <summary>기본값 (새 게임)</summary>

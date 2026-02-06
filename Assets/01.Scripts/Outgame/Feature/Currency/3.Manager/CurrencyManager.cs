@@ -46,8 +46,8 @@ public class CurrencyManager : MonoBehaviour
       {
          _currencies[i] = currencyValues[i];
       }
-      
-   }
+        OnDataChanged?.Invoke();
+    }
    
    
    // 0. 재화 조회
