@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+#if !UNITY_WEBGL || UNITY_EDITOR
 using Firebase;
 using Firebase.Auth;
 using Firebase.Firestore;
@@ -44,3 +45,4 @@ public class FirebaseInitializer : MonoBehaviour
         }
     }
 }
+#endif
