@@ -23,12 +23,7 @@ public class AccountManager : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
 
-#if UNITY_WEBGL && !UNITY_EDITOR
-        // WebGL에서는 Firebase 사용 불가 - 로컬 레포지토리 필요 시 구현
-        _repository = null; // TODO: WebGL용 로컬 AccountRepository 구현 필요
-#else
         _repository = new FirebaseAccountRepository();
-#endif
     }
 
 
