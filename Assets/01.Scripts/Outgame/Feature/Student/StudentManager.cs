@@ -18,7 +18,11 @@ public class StudentManager : MonoBehaviour
     {
         Instance = this;
 
+#if UNITY_WEBGL && !UNITY_EDITOR
+        _repository = new PlayerPrefsStudentRepository();
+#else
         _repository = new FireBaseStudentRepository();
+#endif
 
         foreach (StudentSpecData data in _SpecTable.SpecDatas)
         {
