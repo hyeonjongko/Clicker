@@ -29,17 +29,17 @@ public class LocalAccountRepository : IAccountRepository
             });
         }
 
-        string hashedPassword = Crypto.HashPassword(password, SALT);
+        //string hashedPassword = Crypto.HashPassword(password, SALT);
         // 해싱문자열: 문자열을 특정 알고리즘을 이용해서 변경된 고정된 길이의 문자열 
         // 성훈씨 아이디 : tjdgnd1004
         //      비밀번호: 10041004!
 
-        PlayerPrefs.SetString(email, hashedPassword);
+        PlayerPrefs.SetString(email, password);
 
         return new UniTask<AccountResult>(new AccountResult()
         {
             Success = true,
-            Account = new Account(email, hashedPassword),
+            Account = new Account(email, password),
         });
     }
 
