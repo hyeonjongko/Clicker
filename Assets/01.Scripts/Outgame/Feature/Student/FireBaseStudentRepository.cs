@@ -1,15 +1,17 @@
+#if !UNITY_WEBGL || UNITY_EDITOR
 using UnityEngine;
 
 public class FireBaseStudentRepository : IStudentRepository
 {
     public void Save(string name, StudentSaveData saveData)
     {
-        //¾Ë¾Æ¼­ ±¸Çö
+        //ï¿½Ë¾Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     }
     public StudentSaveData Load(string name)
     {
-        //¾Ë¾Æ¼­ ±¸Çö
+        //ï¿½Ë¾Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         return null;
     }
 }
+#endif

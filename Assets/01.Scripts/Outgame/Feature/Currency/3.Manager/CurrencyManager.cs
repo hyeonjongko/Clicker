@@ -27,8 +27,11 @@ public class CurrencyManager : MonoBehaviour
    {
       Instance = this;
 
-        //_repository = new LocalCurrencyRepository();
+#if UNITY_WEBGL && !UNITY_EDITOR
+        _repository = new LocalCurrencyRepository();
+#else
         _repository = new FirebaseCurrencyRepository();
+#endif
       
       
       Currency currency1 = new Currency(10000);
