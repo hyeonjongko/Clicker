@@ -1,15 +1,21 @@
-name: Unity Build
+﻿name: Unity WebGL Build & Deploy
 
 on:
   push:
     branches: [ web-build ]
+
+# GitHub Pages 배포에 필요한 권한
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # 0. ��ũ ���� Ȯ��
+      # 0. 디스크 공간 확보
       - name: Free Disk Space
         uses: jlumbroso/free-disk-space@main
         with:
@@ -20,34 +26,87 @@ jobs:
           large-packages: true
           docker-images: true
           swap-storage: true
-          
-      # 1. �ڵ� ��������
+
+      # 1. 코드 가져오기
       - name: Checkout
         uses: actions/checkout@v4
-      
-      # 2. ĳ�� (���� �ӵ� ���)
+
+      # 2. 캐시 (빌드 속도 향상)
       - name: Cache Library
         uses: actions/cache@v4
         with:
           path: Library
-          key: Library-Windows-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-WebGL-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
-            Library-Windows-
+            Library-WebGL-
             Library-
-      
-      # 3. Unity ���� (����ũž)
-      - name: Build Windows
+
+      # 3. Unity 빌드
+      - name: Build WebGL
         uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          targetPlatform: StandaloneWindows64
-      
-      # 4. ���� ����� ���ε�
+          targetPlatform: WebGL
+          buildProfile: "Assets/Settings/Build Profiles/Web-Mobile-Development.asset"
+
+      # 4. 빌드 결과물 업로드 (Artifact)
       - name: Upload Build
         uses: actions/upload-artifact@v4
         with:
-          name: Windows-Build
-          path: build/StandaloneWindows64
+          name: WebGL-Build
+          path: build/WebGL
+
+      # 5. GitHub Pages 배포 준비
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # 6. Pages용 Artifact 업로드
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/WebGL/WebGL
+
+      # 7. GitHub Pages 배포
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+
+       # 8. 슬랙 알림 (성공)
+      - name: Slack Notification (Success)
+        if: success()
+        uses: slackapi/slack-github-action@v2.1.1
+        with:
+          webhook: ${{ secrets.SLACK_WEBHOOK }}
+          webhook-type: incoming-webhook
+          payload: |
+            text: "✅ WebGL 빌드 & 배포 성공"
+            blocks:
+              - type: section
+                text:
+                  type: mrkdwn
+                  text: |
+                    ✅ *${{ github.repository }}* 빌드 & 배포 완료!
+                    📝 커밋: ${{ github.event.head_commit.message }}
+                    👤 작성자: ${{ github.actor }}
+                    🌐 <https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/|플레이하기>
+
+      # 9. 슬랙 알림 (실패)
+      - name: Slack Notification (Failure)
+        if: failure()
+        uses: slackapi/slack-github-action@v2.1.1
+        with:
+          webhook: ${{ secrets.SLACK_WEBHOOK }}
+          webhook-type: incoming-webhook
+          payload: |
+            text: "❌ WebGL 빌드 실패"
+            blocks:
+              - type: section
+                text:
+                  type: mrkdwn
+                  text: |
+                    🔥 *${{ github.repository }}* 빌드 실패!
+                    📝 커밋: ${{ github.event.head_commit.message }}
+                    👤 작성자: ${{ github.actor }}
+                    🔗 <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|로그 확인>
