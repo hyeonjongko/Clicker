@@ -17,8 +17,11 @@ public class UpgradeManager : MonoBehaviour
     {
         Instance = this;
 
-        //_repository = new JsonUpgradeRepository(AccountManager.Instance.Email);
+#if UNITY_WEBGL && !UNITY_EDITOR
+        _repository = new JsonUpgradeRepository("webgl_user");
+#else
         _repository = new FirebaseUpgradeRepository();
+#endif
         InitializeAsync().Forget();
     }
 

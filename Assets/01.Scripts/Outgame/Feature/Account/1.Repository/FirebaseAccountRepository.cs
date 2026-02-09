@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+#if !UNITY_WEBGL || UNITY_EDITOR
 using Firebase;
 using Firebase.Auth;
 using UnityEngine;
@@ -60,3 +61,4 @@ public class FirebaseAccountRepository : IAccountRepository
         _auth.SignOut();
     }
 }
+#endif
