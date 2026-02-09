@@ -4,7 +4,6 @@ on:
   push:
     branches: [ web-build ]
 
-# GitHub Pages 배포에 필요한 권한
 permissions:
   contents: read
   pages: write
@@ -73,7 +72,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
 
-       # 8. 슬랙 알림 (성공)
+      # 8. 슬랙 알림 (성공)
       - name: Slack Notification (Success)
         if: success()
         uses: slackapi/slack-github-action@v2.1.1
