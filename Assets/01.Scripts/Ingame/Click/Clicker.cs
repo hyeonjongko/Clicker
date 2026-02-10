@@ -42,17 +42,28 @@ public class Clicker : MonoBehaviour
                 Damage = damage,
                 Position = hit.point,
             };
-            
+
             clickable?.OnClick(clickInfo);
         }
     }
 
     private double GetManualClickDamage()
     {
-        double flat = UpgradeManager.Instance
-            .Get(EUpgradeType.ManualClickDamagePlusAdd).Damage;
-        double percent = UpgradeManager.Instance
-            .Get(EUpgradeType.ManualClickDamagePercentAdd).Damage;
+        double flat = 0;
+        double percent = 0;
+
+        // UpgradeManager가 초기화되지 않았을 때를 대비한 null 체크
+        var flatUpgrade = UpgradeManager.Instance?.Get(EUpgradeType.ManualClickDamagePlusAdd);
+        if (flatUpgrade != null)
+        {
+            flat = flatUpgrade.Damage;
+        }
+
+        var percentUpgrade = UpgradeManager.Instance?.Get(EUpgradeType.ManualClickDamagePercentAdd);
+        if (percentUpgrade != null)
+        {
+            percent = percentUpgrade.Damage;
+        }
 
         double baseDamage = 1; // 기본 클릭 대미지
         return (baseDamage + flat) * (1 + percent / 100.0);

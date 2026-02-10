@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
 {
-    public static UpgradeManager Instance {  get; private set; }
+    public static UpgradeManager Instance { get; private set; }
     public static event Action OnDataChanged;
 
     [SerializeField] private UpgradeSpecTableSO _specTable;
@@ -55,7 +55,14 @@ public class UpgradeManager : MonoBehaviour
         OnDataChanged?.Invoke();
     }
 
-    public Upgrade Get(EUpgradeType type) => _upgrade[type] ?? null;
+    public Upgrade Get(EUpgradeType type)
+    {
+        if (_upgrade.TryGetValue(type, out Upgrade upgrade))
+        {
+            return upgrade;
+        }
+        return null;
+    }
     public List<Upgrade> GetAll() => _upgrade.Values.ToList();
 
     public bool CanLevelUp(EUpgradeType type)
